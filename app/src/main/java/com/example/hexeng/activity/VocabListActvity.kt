@@ -1,36 +1,46 @@
 package com.example.hexeng
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.hexeng.activity.DefinitionActivity
+import kotlinx.android.synthetic.main.vocab_list_activity.*
 
 
-class VocabActvity : AppCompatActivity() {
+class VocabListActvity : AppCompatActivity() {
 
-    // Initializing an empty ArrayList to be filled with animals
-    val vocabData: ArrayList<String> = ArrayList()
+
+    private val vocabData: ArrayList<String> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_vocab)
+        setContentView(R.layout.vocab_list_activity)
 
-        // Loads animals into the ArrayList
+
         addVocab()
 
-        // Creates a vertical Layout Manager
-        item_list.layoutManager = LinearLayoutManager(this)
-
-        // You can use GridLayoutManager if you want multiple columns. Enter the number of columns as a parameter.
-//        rv_animal_list.layoutManager = GridLayoutManager(this, 2)
-
-        // Access the RecyclerView Adapter and load the data into it
-        item_list.adapter = Adapter(vocabData, this)
-
+        setupView()
     }
 
-    // Adds animals to the empty animals ArrayList
-    fun addVocab() {
+    private fun setupView() {
+        item_list.layoutManager = LinearLayoutManager(this)
+        setupRecyclerView()
+    }
+
+    private fun setupRecyclerView() {
+        item_list.adapter = Adapter(
+            vocabData
+        ) { startDefinitionActivity() }
+    }
+
+    private fun startDefinitionActivity() {
+        val intent = Intent(this,DefinitionActivity::class.java)
+        startActivity(intent)
+    }
+
+
+    private fun addVocab() {
         vocabData.add("abstract")
         vocabData.add("affirmation")
         vocabData.add("analogous")

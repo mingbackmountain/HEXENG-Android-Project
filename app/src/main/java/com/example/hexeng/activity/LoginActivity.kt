@@ -27,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.login_activity)
 
         initialise()
     }
@@ -41,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
         btnCreateAccount!!
             .setOnClickListener { startActivity(
                 Intent(this@LoginActivity,
-                CreateAccountActivity::class.java)
+                RegistrationActivity::class.java)
             ) }
         btnLogin!!.setOnClickListener { loginUser() }
     }
@@ -71,7 +71,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun updateUI() {
-        val intent = Intent(this@LoginActivity, SummarizeActivity::class.java)
+        val intent = Intent(this@LoginActivity, ProfileActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
     }

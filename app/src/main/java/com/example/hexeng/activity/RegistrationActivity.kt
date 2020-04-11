@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
-class CreateAccountActivity : AppCompatActivity() {
+class RegistrationActivity : AppCompatActivity() {
     private var etFirstName: EditText? = null
     private var etLastName: EditText? = null
     private var etEmail: EditText? = null
@@ -34,7 +34,7 @@ class CreateAccountActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_create_account)
+        setContentView(R.layout.create_account_activity)
 
         initialise()
     }
@@ -76,7 +76,7 @@ class CreateAccountActivity : AppCompatActivity() {
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                        Toast.makeText(this@CreateAccountActivity, "Authentication failed.",
+                        Toast.makeText(this@RegistrationActivity, "Authentication failed.",
                             Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -87,7 +87,7 @@ class CreateAccountActivity : AppCompatActivity() {
 
     private fun updateUserInfoAndUI() {
         //start next activity
-        val intent = Intent(this@CreateAccountActivity, LoginActivity::class.java)
+        val intent = Intent(this@RegistrationActivity, LoginActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
     }
@@ -97,18 +97,15 @@ class CreateAccountActivity : AppCompatActivity() {
         mUser!!.sendEmailVerification()
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(this@CreateAccountActivity,
+                    Toast.makeText(this@RegistrationActivity,
                         "Verification email sent to " + mUser.getEmail(),
                         Toast.LENGTH_SHORT).show()
                 } else {
                     Log.e(TAG, "sendEmailVerification", task.exception)
-                    Toast.makeText(this@CreateAccountActivity,
+                    Toast.makeText(this@RegistrationActivity,
                         "Failed to send verification email.",
                         Toast.LENGTH_SHORT).show()
                 }
             }
     }
-
-
-
 }
