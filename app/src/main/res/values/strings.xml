@@ -5,6 +5,7 @@
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="login_title">Login</string>
+    <string name="registration_title">Registration</string>
     <string name="create_act">Create Account</string>
     <string name="etEmail">Email</string>
     <string name="etPassword">Password</string>

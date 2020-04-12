@@ -1,10 +1,13 @@
-package com.example.hexeng
+package com.example.hexeng.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.hexeng.activity.DefinitionActivity
+import com.example.hexeng.Adapter
+import com.example.hexeng.R
 import kotlinx.android.synthetic.main.vocab_list_activity.*
 
 
@@ -12,6 +15,7 @@ class VocabListActvity : AppCompatActivity() {
 
 
     private val vocabData: ArrayList<String> = ArrayList()
+    private var btnStart: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +30,7 @@ class VocabListActvity : AppCompatActivity() {
     private fun setupView() {
         item_list.layoutManager = LinearLayoutManager(this)
         setupRecyclerView()
+        setupButton()
     }
 
     private fun setupRecyclerView() {
@@ -37,6 +42,15 @@ class VocabListActvity : AppCompatActivity() {
     private fun startDefinitionActivity() {
         val intent = Intent(this,DefinitionActivity::class.java)
         startActivity(intent)
+    }
+
+    private fun setupButton() {
+        btnStart = findViewById<View>(R.id.btn_start_vocab) as Button
+
+        btnStart!!.setOnClickListener { startActivity(
+            Intent(this,
+                GameActivity::class.java)
+        ) }
     }
 
 

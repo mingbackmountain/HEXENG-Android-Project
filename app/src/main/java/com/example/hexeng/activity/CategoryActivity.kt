@@ -1,9 +1,11 @@
-package com.example.hexeng
+package com.example.hexeng.activity
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.hexeng.Adapter
+import com.example.hexeng.R
 import kotlinx.android.synthetic.main.category_activity.*
 
 
@@ -33,7 +35,7 @@ class CategoryActivity : AppCompatActivity() {
     }
 
     private fun startVocabListActivity() {
-        val intent = Intent(this,VocabListActvity::class.java)
+        val intent = Intent(this, VocabListActvity::class.java)
         startActivity(intent)
     }
 
@@ -59,10 +61,3 @@ class CategoryActivity : AppCompatActivity() {
         categoriesData.add("war and peace")
     }
 }
-
-
-
-
-//
-//        // Access the RecyclerView Adapter and load the data into it
-//        item_list.adapter = Adapter(categoriesData, this)

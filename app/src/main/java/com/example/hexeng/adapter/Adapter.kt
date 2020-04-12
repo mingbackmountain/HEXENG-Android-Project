@@ -22,8 +22,9 @@ class Adapter(private val items : ArrayList<String>, val onClickListener:() -> U
         holder.itemView.setOnClickListener {
             onClickListener()
         }
-    }
 
+        holder.itemView.item.text = items[position]
+    }
 }
 
 class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
