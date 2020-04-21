@@ -1,4 +1,4 @@
-package com.example.hexeng
+package com.example.hexeng.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,19 +9,21 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.hexeng.R
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+
 
 class RegistrationActivity : AppCompatActivity() {
+
     private var etFirstName: EditText? = null
     private var etLastName: EditText? = null
     private var etEmail: EditText? = null
     private var etPassword: EditText? = null
     private var btnCreateAccount: Button? = null
+    private var db = Firebase.firestore
 
-    private var mDatabaseReference: DatabaseReference? = null
-    private var mDatabase: FirebaseDatabase? = null
     private var mAuth: FirebaseAuth? = null
 
     private val TAG = "CreateAccountActivity"
@@ -45,8 +47,6 @@ class RegistrationActivity : AppCompatActivity() {
         etEmail = findViewById<View>(R.id.et_email) as EditText
         etPassword = findViewById<View>(R.id.et_password) as EditText
         btnCreateAccount = findViewById<View>(R.id.btn_register) as Button
-        mDatabase = FirebaseDatabase.getInstance()
-        mDatabaseReference = mDatabase!!.reference.child("Users")
         mAuth = FirebaseAuth.getInstance()
         btnCreateAccount!!.setOnClickListener { createNewAccount() }
     }
@@ -68,10 +68,22 @@ class RegistrationActivity : AppCompatActivity() {
                         val userId = mAuth!!.currentUser!!.uid
                         //Verify Email
                         verifyEmail();
-                        //update user profile information
-                        val currentUserDb = mDatabaseReference!!.child(userId)
-                        currentUserDb.child("firstName").setValue(firstName)
-                        currentUserDb.child("lastName").setValue(lastName)
+                        //insert user profile information
+                        val user = hashMapOf(
+                            "uid" to userId,
+                            "firstname" to firstName,
+                            "lastname" to lastName,
+                            "email" to email,
+                            "score" to 0
+                        )
+                        db.collection("Users")
+                            .add(user)
+                            .addOnSuccessListener { documentReference ->
+                                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+                            }
+                            .addOnFailureListener { e ->
+                                Log.w(TAG, "Error adding document", e)
+                            }
                         updateUserInfoAndUI()
                     } else {
                         // If sign in fails, display a message to the user.

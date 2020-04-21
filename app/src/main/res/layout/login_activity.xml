@@ -19,17 +19,18 @@
             android:id="@+id/imageView"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginLeft="175dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="140dp"
+            android:layout_gravity="center"
             android:src="@drawable/logo"
             tools:ignore="MissingConstraints" />
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="40dp"
             android:text="@string/login_title"
             android:textColor="@color/color_text"
             android:textStyle="bold"
+            android:textSize="30dp"
             android:gravity="center"
             android:layout_marginTop="20dp"
             />
