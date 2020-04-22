@@ -11,7 +11,7 @@ import com.example.hexeng.R
 import kotlinx.android.synthetic.main.vocab_list_activity.*
 
 
-class VocabListActvity : AppCompatActivity() {
+class VocabListActivity : AppCompatActivity() {
 
 
     private val vocabData: ArrayList<String> = ArrayList()

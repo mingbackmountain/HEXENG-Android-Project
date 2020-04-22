@@ -20,7 +20,7 @@
         <activity android:name=".activity.RegistrationActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".activity.CategoryActivity" />
-        <activity android:name=".activity.VocabListActvity" />
+        <activity android:name=".activity.VocabListActivity" />
         <activity android:name=".activity.DefinitionActivity" />
         <activity android:name=".activity.GameActivity" />
         <activity android:name=".activity.CompleteActivity" />

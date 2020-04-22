@@ -35,7 +35,7 @@ class CategoryActivity : AppCompatActivity() {
     }
 
     private fun startVocabListActivity() {
-        val intent = Intent(this, VocabListActvity::class.java)
+        val intent = Intent(this, VocabListActivity::class.java)
         startActivity(intent)
     }
 
