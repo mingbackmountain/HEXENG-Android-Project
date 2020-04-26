@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.hexeng.Adapter
+import com.example.hexeng.adapter.Adapter
 import com.example.hexeng.R
 import kotlinx.android.synthetic.main.vocab_list_activity.*
 

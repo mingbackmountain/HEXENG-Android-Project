@@ -31,6 +31,12 @@ class SplashScreenActivity:AppCompatActivity() {
         },1500)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+        auth.signOut();
+    }
+
     private fun startLoginActivity() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
@@ -42,7 +48,6 @@ class SplashScreenActivity:AppCompatActivity() {
         startActivity(intent)
         finish()
     }
-
 }
 
 

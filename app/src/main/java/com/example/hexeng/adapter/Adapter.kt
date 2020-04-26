@@ -1,10 +1,10 @@
-package com.example.hexeng
+package com.example.hexeng.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hexeng.R
 import kotlinx.android.synthetic.main.recycleview_row.view.*
 
 class Adapter(private val items : ArrayList<String>, val onClickListener:() -> Unit) : RecyclerView.Adapter<ViewHolder>() {
