@@ -34,7 +34,7 @@ class SplashScreenActivity:AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
 
-        auth.signOut();
+        auth.signOut()
     }
 
     private fun startLoginActivity() {

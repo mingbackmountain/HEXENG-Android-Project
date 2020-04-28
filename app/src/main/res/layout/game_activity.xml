@@ -14,7 +14,7 @@
         tools:ignore="MissingConstraints">
 
         <TextView
-            android:id="@+id/button3"
+            android:id="@+id/score"
             android:layout_width="80dp"
             android:layout_height="40dp"
             android:layout_gravity="right"
@@ -27,34 +27,71 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
         <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-            <view
-                android:layout_width="100dp"
-                android:layout_height="100dp"></view>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/colorBtn">
 
-            <view
-                android:layout_width="100dp"
-                android:layout_height="100dp"></view>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:radius="8dp"
+                android:background="@color/colorBtn">
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <view
-                android:layout_width="100dp"
-                android:layout_height="100dp"></view>
 
-            <view
-                android:layout_width="100dp"
-                android:layout_height="100dp"></view>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/colorBtn">
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:radius="8dp"
+                android:background="@color/colorBtn">
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/button3"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="Question"
+        android:textColor="@color/color_text"
+        tools:layout_editor_absoluteX="157dp"
+        tools:layout_editor_absoluteY="105dp"
+        android:textStyle="bold"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

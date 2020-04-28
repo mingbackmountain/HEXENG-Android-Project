@@ -41,63 +41,62 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/nameTextView"
-        app:layout_constraintBottom_toTopOf="@id/btn_start"
-        android:background="@color/colorBtn">
+        app:layout_constraintTop_toBottomOf="@id/nameTextView">
 
 
         <LinearLayout
             android:id="@+id/sub_layout"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:orientation="horizontal"
-            android:background="@color/colorBtn">
-
+            android:orientation="horizontal">
             <com.makeramen.roundedimageview.RoundedImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
                 android:src="@color/colorBtn"
-                app:riv_corner_radius_top_left="10dp" />
-
-            <View
-                android:id="@+id/view_left"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/colorBtn" />
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="#FFFFFF" />
-
-            <View
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/colorBtn" />
-
+                app:riv_corner_radius_top_left="10dp"
+                app:riv_corner_radius_top_right="10dp"/>
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#FFFFFF" />
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="250 words"
+            android:text="Total Score"
+            android:textStyle="bold"
             android:gravity="center"
-            android:background="@color/colorBtn" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="346dp"
             android:background="@color/colorBtn"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            android:textColor="@color/color_text"/>
+
+        <TextView
+            android:id="@+id/text_score"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="score"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:background="@color/colorBtn"
+            android:textColor="@color/color_text"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FFFFFF" />
+        <LinearLayout
+            android:id="@+id/sub_layout2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@color/colorBtn"
+                app:riv_corner_radius_bottom_left="10dp"
+                app:riv_corner_radius_bottom_right="10dp"/>
+        </LinearLayout>
 
     </LinearLayout>
 

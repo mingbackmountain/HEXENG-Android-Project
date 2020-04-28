@@ -2,41 +2,79 @@ package com.example.hexeng.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.hexeng.adapter.Adapter
 import com.example.hexeng.R
+import com.example.hexeng.adapter.VocabAdapter
+import com.example.hexeng.model.Vocab
+import com.google.firebase.firestore.EventListener
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 import kotlinx.android.synthetic.main.vocab_list_activity.*
 
 
 class VocabListActivity : AppCompatActivity() {
 
-
-    private val vocabData: ArrayList<String> = ArrayList()
+    private var mAdapter = VocabAdapter { startDefinitionActivity() }
+    private var firestoreDB : FirebaseFirestore? = null
+    private var firestoreListener: ListenerRegistration? = null
+    private var listVocab = ArrayList<Vocab>()
     private var btnStart: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.vocab_list_activity)
 
-
-        addVocab()
-
-        setupView()
-    }
-
-    private fun setupView() {
         item_list.layoutManager = LinearLayoutManager(this)
-        setupRecyclerView()
+        item_list.adapter = mAdapter
+
         setupButton()
+        val extras = intent.extras
+        val catID: String? = extras?.getString("catID")
+        val catName: String? = extras?.getString("catName")
+        vocab_title.text = catName
+
+        firestoreDB = FirebaseFirestore.getInstance()
+
+        firestoreListener = catID?.let {
+            firestoreDB!!.collection("Category")
+                .document(it).collection("words")
+                .addSnapshotListener(EventListener{ snapshots, e ->
+                    if(e != null) {
+                        Log.w("thisis", "error",e)
+                    }
+
+                    if(snapshots != null) {
+                        for(vocab in snapshots.documents) {
+                            val vocabInfo = vocab.data
+                            val id = vocab.id
+                            if (vocabInfo != null) {
+                                this.addVocab(id, vocabInfo)
+                            }
+                        }
+                        mAdapter.update(listVocab)
+                    }
+                })
+        }
     }
 
-    private fun setupRecyclerView() {
-        item_list.adapter = Adapter(
-            vocabData
-        ) { startDefinitionActivity() }
+    override fun onDestroy() {
+        super.onDestroy()
+        firestoreListener!!.remove()
+    }
+
+    private fun addVocab(id:String,vocabInfo:MutableMap<String,Any>) {
+        listVocab.add(
+            Vocab(
+                id,
+                vocabInfo["word"] as String,
+                vocabInfo["meaning"] as String
+            )
+        )
     }
 
     private fun startDefinitionActivity() {
@@ -53,23 +91,4 @@ class VocabListActivity : AppCompatActivity() {
         ) }
     }
 
-
-    private fun addVocab() {
-        vocabData.add("abstract")
-        vocabData.add("affirmation")
-        vocabData.add("analogous")
-        vocabData.add("anecdote")
-        vocabData.add("antithesis")
-        vocabData.add("articulation")
-        vocabData.add("assert")
-        vocabData.add("bias")
-        vocabData.add("blatant")
-        vocabData.add("brevity")
-        vocabData.add("cliché")
-        vocabData.add("compelling")
-        vocabData.add("comprehensive")
-        vocabData.add("concise")
-        vocabData.add("conjecture")
-        vocabData.add("consensus")
-    }
 }

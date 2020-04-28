@@ -1,11 +1,12 @@
 package com.example.hexeng.activity
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.hexeng.adapter.Adapter
 import com.example.hexeng.R
 import com.example.hexeng.adapter.CategoryAdapter
 import com.example.hexeng.model.Category
@@ -17,35 +18,36 @@ import kotlinx.android.synthetic.main.category_activity.*
 
 class CategoryActivity : AppCompatActivity() {
 
-    private val TAG = "CategoryActivity"
-    private var mAdapter:CategoryAdapter? = null
+    private var mAdapter = CategoryAdapter()
     private var firestoreDB : FirebaseFirestore? = null
     private var firestoreListener: ListenerRegistration? = null
+    private var listCategory = ArrayList<Category>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.category_activity)
 
+        item_list.layoutManager = LinearLayoutManager(this)
+        item_list.adapter = mAdapter
+
         firestoreDB = FirebaseFirestore.getInstance()
 
         firestoreListener = firestoreDB!!.collection("Category")
-                            .addSnapshotListener(EventListener{documentSnapshots, e ->
+                            .addSnapshotListener(EventListener{snapshots, e ->
                                 if(e != null) {
-                                    Log.e(TAG,"listen failed!",e)
+                                    Log.w("thisis", "error",e)
                                 }
 
-                                val categoryList = mutableListOf<Category>()
-
-                                if (documentSnapshots != null) {
-                                    for(doc in documentSnapshots) {
-                                        val category = doc.toObject(Category::class.java)
-                                        category.id = doc.id
-                                        categoryList.add(category)
+                                if (snapshots != null) {
+                                    for(cat in snapshots.documents) {
+                                        val categoryInfo = cat.data
+                                        val id = cat.id
+                                        if (categoryInfo != null) {
+                                            this.addCategory(id, categoryInfo)
+                                        }
                                     }
-
-                                    mAdapter = CategoryAdapter(categoryList) {
-                                        startVocabListActivity()
-                                    }
+                                    mAdapter.update(listCategory)
                                 }
                             })
     }
@@ -56,10 +58,12 @@ class CategoryActivity : AppCompatActivity() {
         firestoreListener!!.remove()
     }
 
-
-
-    private fun startVocabListActivity() {
-        val intent = Intent(this, VocabListActivity::class.java)
-        startActivity(intent)
+    private fun addCategory(id:String,categoryInfo:MutableMap<String,Any>) {
+        listCategory.add(
+            Category(
+                id,
+                categoryInfo["Name"] as String
+            )
+        )
     }
 }
