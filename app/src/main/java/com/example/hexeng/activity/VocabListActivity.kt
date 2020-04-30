@@ -2,6 +2,7 @@ package com.example.hexeng.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -15,11 +16,12 @@ import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import kotlinx.android.synthetic.main.vocab_list_activity.*
+import java.io.Serializable
 
 
 class VocabListActivity : AppCompatActivity() {
 
-    private var mAdapter = VocabAdapter { startDefinitionActivity() }
+    private var mAdapter = VocabAdapter()
     private var firestoreDB : FirebaseFirestore? = null
     private var firestoreListener: ListenerRegistration? = null
     private var listVocab = ArrayList<Vocab>()
@@ -32,17 +34,16 @@ class VocabListActivity : AppCompatActivity() {
         item_list.layoutManager = LinearLayoutManager(this)
         item_list.adapter = mAdapter
 
-        setupButton()
         val extras = intent.extras
         val catID: String? = extras?.getString("catID")
         val catName: String? = extras?.getString("catName")
+
         vocab_title.text = catName
 
         firestoreDB = FirebaseFirestore.getInstance()
 
-        firestoreListener = catID?.let {
-            firestoreDB!!.collection("Category")
-                .document(it).collection("words")
+        firestoreListener =
+            firestoreDB!!.collection("Category/$catID/words")
                 .addSnapshotListener(EventListener{ snapshots, e ->
                     if(e != null) {
                         Log.w("thisis", "error",e)
@@ -59,7 +60,7 @@ class VocabListActivity : AppCompatActivity() {
                         mAdapter.update(listVocab)
                     }
                 })
-        }
+        setupButton()
     }
 
     override fun onDestroy() {
@@ -77,18 +78,21 @@ class VocabListActivity : AppCompatActivity() {
         )
     }
 
-    private fun startDefinitionActivity() {
-        val intent = Intent(this,DefinitionActivity::class.java)
-        startActivity(intent)
-    }
-
     private fun setupButton() {
         btnStart = findViewById<View>(R.id.btn_start_vocab) as Button
 
+        val extras = Bundle()
+        extras.putParcelableArrayList("vocabList",listVocab)
+
         btnStart!!.setOnClickListener { startActivity(
             Intent(this,
-                GameActivity::class.java)
-        ) }
+                GameActivity::class.java).putExtras(extras)
+        )
+        }
     }
 
 }
+
+
+
+

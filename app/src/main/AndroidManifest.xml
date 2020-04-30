@@ -23,6 +23,8 @@
         <activity android:name=".activity.VocabListActivity" />
         <activity android:name=".activity.DefinitionActivity" />
         <activity android:name=".activity.GameActivity" />
-        <activity android:name=".activity.CompleteActivity" />
+        <activity android:name=".activity.CompleteActivity"/>
+
+
     </application>
 </manifest>
