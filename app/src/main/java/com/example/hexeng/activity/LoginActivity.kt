@@ -9,23 +9,18 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.hexeng.ProfileActivity
 import com.example.hexeng.R
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.login_activity.*
 
 
 class LoginActivity : AppCompatActivity() {
 
     private val TAG = "LoginActivity"
-    //global variables
+
     private var email: String? = null
     private var password: String? = null
-    //UI elements
-    private var etEmail: EditText? = null
-    private var etPassword: EditText? = null
-    private var btnLogin: Button? = null
-    private var btnCreateAccount: Button? = null
-    //Firebase references
+
     private var mAuth: FirebaseAuth? = null
 
 
@@ -37,25 +32,23 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun initialise() {
-        etEmail = findViewById<View>(R.id.et_email) as EditText
-        etPassword = findViewById<View>(R.id.et_password) as EditText
-        btnLogin = findViewById<View>(R.id.btn_login) as Button
-        btnCreateAccount = findViewById<View>(R.id.btn_register_account) as Button
         mAuth = FirebaseAuth.getInstance()
-        btnCreateAccount!!
+
+        btn_register_account!!
             .setOnClickListener { startActivity(
-                Intent(this@LoginActivity,
+                Intent(this,
                 RegistrationActivity::class.java)
             ) }
-        btnLogin!!.setOnClickListener { loginUser() }
+
+        btn_login!!.setOnClickListener { loginUser() }
     }
 
     private fun loginUser() {
-        email = etEmail?.text.toString()
-        password = etPassword?.text.toString()
+        email = et_email?.text.toString()
+        password = et_password?.text.toString()
+
         if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
 
-            Log.d(TAG, "Logging in user.")
             mAuth!!.signInWithEmailAndPassword(email!!, password!!)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
@@ -63,8 +56,7 @@ class LoginActivity : AppCompatActivity() {
                         updateUI()
                     } else {
                         Log.e(TAG, "signInWithEmail:failure", task.exception)
-                        Toast.makeText(this@LoginActivity, "Authentication failed.",
-                            Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
                     }
                 }
         } else {
@@ -73,10 +65,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun updateUI() {
-        val intent = Intent(this@LoginActivity, ProfileActivity::class.java)
+        val intent = Intent(this, ProfileActivity::class.java)
+
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
         finish()
     }
-
 }

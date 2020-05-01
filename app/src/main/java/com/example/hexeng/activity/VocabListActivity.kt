@@ -2,11 +2,7 @@ package com.example.hexeng.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Parcelable
 import android.util.Log
-import android.view.View
-import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hexeng.R
@@ -16,7 +12,6 @@ import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import kotlinx.android.synthetic.main.vocab_list_activity.*
-import java.io.Serializable
 
 
 class VocabListActivity : AppCompatActivity() {
@@ -25,7 +20,6 @@ class VocabListActivity : AppCompatActivity() {
     private var firestoreDB : FirebaseFirestore? = null
     private var firestoreListener: ListenerRegistration? = null
     private var listVocab = ArrayList<Vocab>()
-    private var btnStart: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,15 +73,12 @@ class VocabListActivity : AppCompatActivity() {
     }
 
     private fun setupButton() {
-        btnStart = findViewById<View>(R.id.btn_start_vocab) as Button
-
         val extras = Bundle()
         extras.putParcelableArrayList("vocabList",listVocab)
 
-        btnStart!!.setOnClickListener { startActivity(
-            Intent(this,
-                GameActivity::class.java).putExtras(extras)
-        )
+        btn_start_vocab!!.setOnClickListener { startActivity(
+            Intent(this, GameActivity::class.java).putExtras(extras))
+            finish()
         }
     }
 

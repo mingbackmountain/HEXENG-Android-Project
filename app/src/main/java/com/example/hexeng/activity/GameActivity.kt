@@ -2,9 +2,7 @@ package com.example.hexeng.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.hexeng.ProfileActivity
 import com.example.hexeng.R
 import com.example.hexeng.model.Vocab
 import kotlinx.android.synthetic.main.game_activity.*
@@ -166,6 +164,7 @@ class GameActivity : AppCompatActivity() {
             setupQuestion()
         } else {
             startActivity(Intent(this,CompleteActivity::class.java).putExtra("total-score",totalscore))
+            finish()
         }
     }
 

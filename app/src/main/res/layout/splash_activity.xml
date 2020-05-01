@@ -14,12 +14,11 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="303dp"
-            android:layout_height="230dp"
-            android:layout_marginTop="200dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             android:layout_gravity="center"
-            android:src="@drawable/logotext"
-            tools:ignore="MissingConstraints" />
+            android:layout_marginTop="150dp"
+            android:src="@drawable/logotext" />
 
         <TextView
             android:id="@+id/textView2"
@@ -28,7 +27,7 @@
             android:layout_gravity="center"
             android:text="HEXENG"
             android:textColor="@color/color_text"
-            android:textSize="50dp"
+            android:textSize="60dp"
             android:textStyle="bold"
             tools:ignore="MissingConstraints" />
     </LinearLayout>

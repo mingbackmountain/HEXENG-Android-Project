@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
-import com.example.hexeng.ProfileActivity
 import com.example.hexeng.R
 import com.google.firebase.auth.FirebaseAuth
 
@@ -38,12 +37,14 @@ class SplashScreenActivity:AppCompatActivity() {
 
     private fun startLoginActivity() {
         val intent = Intent(this, LoginActivity::class.java)
+
         startActivity(intent)
         finish()
     }
 
     private fun startProfileActivity() {
         val intent = Intent(this, ProfileActivity::class.java)
+
         startActivity(intent)
         finish()
     }
