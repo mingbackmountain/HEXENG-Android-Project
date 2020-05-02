@@ -49,7 +49,7 @@
         android:orientation="vertical"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/question"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <com.makeramen.roundedimageview.RoundedImageView
-                android:layout_width="180dp"
+                android:layout_width="150dp"
                 android:layout_height="20dp"
                 android:scaleType="fitXY"
                 android:src="@color/color_edge"
@@ -72,15 +72,15 @@
                 tools:ignore="MissingConstraints" />
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/choice-one"
-                    android:layout_width="180dp"
-                    android:layout_height="200dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:layout_marginRight="10dp"
 
                     android:background="@color/colorBtn">
                     <TextView
                         android:id="@+id/choice-one-text"
-                        android:layout_width="match_parent"
-                        android:layout_height="120dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="choice-1"
                         android:textColor="@color/color_text"
@@ -93,7 +93,7 @@
                         android:layout_marginTop="40dp"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <com.makeramen.roundedimageview.RoundedImageView
-                    android:layout_width="180dp"
+                    android:layout_width="150dp"
                     android:layout_height="20dp"
                     android:scaleType="fitXY"
                     android:src="@color/color_edge"
@@ -108,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <com.makeramen.roundedimageview.RoundedImageView
-                    android:layout_width="180dp"
+                    android:layout_width="150dp"
                     android:layout_height="20dp"
                     android:scaleType="fitXY"
                     android:src="@color/color_edge"
@@ -117,15 +117,14 @@
                     tools:ignore="MissingConstraints" />
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/choice-two"
-                    android:layout_width="180dp"
-                    android:layout_height="200dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:layout_marginRight="10dp"
-
                     android:background="@color/colorBtn">
                     <TextView
                         android:id="@+id/choice-two-text"
-                        android:layout_width="match_parent"
-                        android:layout_height="120dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="choice-2"
                         android:textColor="@color/color_text"
@@ -138,7 +137,7 @@
                         android:layout_marginTop="40dp"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <com.makeramen.roundedimageview.RoundedImageView
-                    android:layout_width="180dp"
+                    android:layout_width="150dp"
                     android:layout_height="20dp"
                     android:scaleType="fitXY"
                     android:src="@color/color_edge"
@@ -161,7 +160,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <com.makeramen.roundedimageview.RoundedImageView
-                    android:layout_width="180dp"
+                    android:layout_width="150dp"
                     android:layout_height="20dp"
                     android:scaleType="fitXY"
                     android:src="@color/color_edge"
@@ -170,15 +169,15 @@
                     tools:ignore="MissingConstraints" />
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/choice-three"
-                    android:layout_width="180dp"
-                    android:layout_height="200dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:layout_marginRight="10dp"
 
                     android:background="@color/colorBtn">
                     <TextView
                         android:id="@+id/choice-three-text"
-                        android:layout_width="match_parent"
-                        android:layout_height="120dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="choice-3"
                         android:textColor="@color/color_text"
@@ -191,7 +190,7 @@
                         android:layout_marginTop="40dp"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <com.makeramen.roundedimageview.RoundedImageView
-                    android:layout_width="180dp"
+                    android:layout_width="150dp"
                     android:layout_height="20dp"
                     android:scaleType="fitXY"
                     android:src="@color/color_edge"
@@ -206,7 +205,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <com.makeramen.roundedimageview.RoundedImageView
-                    android:layout_width="180dp"
+                    android:layout_width="150dp"
                     android:layout_height="20dp"
                     android:scaleType="fitXY"
                     android:src="@color/color_edge"
@@ -215,15 +214,15 @@
                     tools:ignore="MissingConstraints" />
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/choice-four"
-                    android:layout_width="180dp"
-                    android:layout_height="200dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:layout_marginRight="10dp"
 
                     android:background="@color/colorBtn">
                     <TextView
                         android:id="@+id/choice-four-text"
-                        android:layout_width="match_parent"
-                        android:layout_height="120dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="choice-4"
                         android:textColor="@color/color_text"
@@ -236,7 +235,7 @@
                         android:layout_marginTop="40dp"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <com.makeramen.roundedimageview.RoundedImageView
-                    android:layout_width="180dp"
+                    android:layout_width="150dp"
                     android:layout_height="20dp"
                     android:scaleType="fitXY"
                     android:src="@color/color_edge"
